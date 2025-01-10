@@ -6,6 +6,7 @@ import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import "tailwindcss/tailwind.css";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, ArcElement, Tooltip, Legend } from 'chart.js';
 import data from './data/clients.json'
+import { FaGoogle } from "react-icons/fa";
 
 // Register components
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Tooltip, Legend);
@@ -80,9 +81,9 @@ const Dashboard = () => {
       </div>
 
       {/* Bottom Section: Clients and Geography */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mt-8">
         {/* Clients Section */}
-        <div className="col-span-1 bg-white border p-4 rounded-md shadow">
+        <div className="col-span-5 bg-white border p-4 rounded-md shadow">
           <div className="flex justify-between">
             <h2 className="flex text-lg font-bold mb-4">Clients</h2>
             <button className="flex bg-purple-500 text-white py-2 px-4 rounded-md mb-4">
@@ -92,12 +93,15 @@ const Dashboard = () => {
           <ul>
             { data.clients.map((cl)=> (
               <li className="mb-2" key={cl.id}>
+                <div>
+                  <FaGoogle />
+                </div>
                 <div className="flex justify-between">
                   <span className="text-sm">Name: <span>{cl.name}</span></span>
                   <span className="font-bold">$ {cl.amount}</span>
                 </div>
                 <div className="flex justify-between">
-                <span className="text-sm">Client Status: <span>{cl.status}</span></span>
+                <span className="text-sm">Client Status: <span className={ cl.status==="Active" ? "text-green-500" : "text-red-500"}>{cl.status}</span></span>
                 <span className="text-sm">Outstanding Balance</span>
                 </div>
               </li>
@@ -106,7 +110,7 @@ const Dashboard = () => {
         </div>
 
         {/* Clients Geography Section */}
-        <div className="col-span-2 bg-white border p-4 rounded-md shadow">
+        <div className="col-span-7 bg-white border p-4 rounded-md shadow">
           <h2 className="text-lg font-bold mb-4">Clients Geography</h2>
           <div className="map-container">
             <ComposableMap projectionConfig={{ scale: 150 }}>
