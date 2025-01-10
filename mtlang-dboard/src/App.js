@@ -109,8 +109,8 @@ const Dashboard = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
 
+          {/* Total Revenue Section */}
           <div className="p-4 bg-white rounded shadow">
-
             <div className="flex justify-between">
               <div className="">
                 <h3 className="text-lg font-medium">Total Revenue</h3>
@@ -125,12 +125,11 @@ const Dashboard = () => {
                   </svg>
                 </button>
               </div>
-
             </div>
             <Bar data={barData} key="bar-chart" style={{ height: "200px", width: "200px" }}/>
-
           </div>
 
+          {/* Invoice Status Section */}
           <div className="p-4 bg-white rounded shadow">
             <div className="flex justify-between">
               <h3 className="flex text-lg font-medium mb-2">Invoice Status</h3>
@@ -149,6 +148,7 @@ const Dashboard = () => {
 
         {/* Bottom Section: Clients and Geography */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mt-8">
+          
           {/* Clients Section */}
           <div className="col-span-5 bg-white border p-4 rounded-md shadow">
             <div className="flex justify-between">
