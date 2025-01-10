@@ -7,6 +7,9 @@ import "tailwindcss/tailwind.css";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, ArcElement, Tooltip, Legend } from 'chart.js';
 import data from './data/clients.json'
 import { FaBell, FaTachometerAlt, FaUsers, FaGoogle, FaFileInvoiceDollar, FaMoneyBillWave, FaHourglassHalf, FaExclamationCircle } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
+import i18n from './i18';
+
 
 // Register components
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Tooltip, Legend);
@@ -15,6 +18,9 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Tooltip, Le
 const geoUrl = "https://unpkg.com/world-atlas@2.0.2/countries-110m.json";
 
 const Dashboard = () => {
+
+  const { t } = useTranslation();
+
   const barData = {
     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     datasets: [
@@ -44,8 +50,16 @@ const Dashboard = () => {
 
   return (
   <div>
-      <header className="flex items-center justify-end bg-white p-4 rounded-md shadow mb-4">
-        <div className="space-x-2">
+      <header className="flex items-center justify-between bg-white p-4 rounded-md shadow mb-4">
+      <div className="flex items-center justify-start p-2 bg-white text-white">
+            <button onClick={() => i18n.changeLanguage("en")} className="px-4 py-2 bg-blue-600 rounded">
+              English
+            </button>
+            <button onClick={() => i18n.changeLanguage("fr")} className="px-4 py-2 bg-green-600 rounded">
+              Français
+            </button>
+          </div>
+        <div className="space-x-2 justify-end">
           <button> <FaBell size={24} color="purple" /> </button>
           <button> <FaUsers size={24} color="purple" /> </button>
         </div>
@@ -57,51 +71,51 @@ const Dashboard = () => {
           <ul className="space-y-4">
             <li className="flex flex-col items-center space-y-2 px-4 py-2 hover:bg-gray-700 cursor-pointer">
               <FaTachometerAlt size={24} />
-              <span>Dashboard</span>
+              <span>{t("dashboard")}</span>
             </li>
             <li className="flex flex-col items-center space-y-2 px-4 py-2 hover:bg-gray-700 cursor-pointer">
               <FaUsers size={24} />
-              <span>Clients</span>
+              <span>{t("clients")}</span>
             </li>
-
           </ul>
         </nav>
       </div>
 
+      {/* Client Summary Section */}
       <div className="p-4 bg-gray-50 h-screen w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
           <div className="flex p-4 bg-white rounded shadow">
             <FaUsers className="flex text-blue-500 text-2xl" />
             <div className="ml-5">
-              <h2 className="text-xs font-medium">Total Clients</h2>
+              <h2 className="text-xs font-medium">{t("totalClients")}</h2>
               <p className="text-lg font-bold text-purple-500">112</p>
             </div>
           </div>
           <div className="flex p-4 bg-white rounded shadow">
           <FaFileInvoiceDollar className="flex text-green-500 text-2xl" />  
             <div className="ml-5">
-              <h2 className="text-xs font-medium">Total Invoices</h2>
+              <h2 className="text-xs font-medium">{t("totalInvoices")}</h2>
               <p className="text-lg font-bold text-purple-500">65</p>
             </div>
           </div>
           <div className="flex p-4 bg-white rounded shadow">
             <FaMoneyBillWave className="flex text-purple-500 text-2xl" />
             <div className="ml-5">
-              <h2 className="text-xs font-medium">Total Revenue</h2>
+              <h2 className="text-xs font-medium">{t("totalRevenue")}</h2>
               <p className="text-lg font-bold text-purple-500">$7500</p>
             </div>
           </div>
           <div className="flex p-4 bg-white rounded shadow">
             <FaHourglassHalf className="flex text-orange-500 text-2xl" />
             <div className="ml-5">
-              <h2 className="text-xs font-medium">Unpaid</h2>
+              <h2 className="text-xs font-medium">{t("unpaid")}</h2>
               <p className="text-lg font-bold text-purple-500">$1200</p>
             </div>
           </div>
           <div className="flex p-4 bg-white rounded shadow">
             <FaExclamationCircle className="flex text-red-500 text-2xl" />
             <div className="ml-5">
-              <h2 className="text-xs font-medium">Overdue</h2>
+              <h2 className="text-xs font-medium">{t("overdue")}</h2>
               <p className="text-lg font-bold text-purple-500">$2210</p>
             </div>
           </div>
@@ -109,11 +123,11 @@ const Dashboard = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
 
+          {/* Total Revenue Section */}
           <div className="p-4 bg-white rounded shadow">
-
             <div className="flex justify-between">
               <div className="">
-                <h3 className="text-lg font-medium">Total Revenue</h3>
+                <h3 className="text-lg font-medium">{t("totalRevenue")}</h3>
                 <h2 className="text-lg font-bold mb-2">$17500</h2>
               </div>
 
@@ -125,15 +139,14 @@ const Dashboard = () => {
                   </svg>
                 </button>
               </div>
-
             </div>
             <Bar data={barData} key="bar-chart" style={{ height: "200px", width: "200px" }}/>
-
           </div>
 
+          {/* Invoice Status Section */}
           <div className="p-4 bg-white rounded shadow">
             <div className="flex justify-between">
-              <h3 className="flex text-lg font-medium mb-2">Invoice Status</h3>
+              <h3 className="flex text-lg font-medium mb-2">{t("invoiceStatus")}</h3>
               <div className="flex relative inline-block">
                 <button type="button" class="h-fit inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" id="menu-button" aria-expanded="true" aria-haspopup="true">
                   All
@@ -149,12 +162,13 @@ const Dashboard = () => {
 
         {/* Bottom Section: Clients and Geography */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mt-8">
+          
           {/* Clients Section */}
           <div className="col-span-5 bg-white border p-4 rounded-md shadow">
             <div className="flex justify-between">
               <h3 className="flex text-lg font-medium mb-4">Clients</h3>
               <button className="flex bg-purple-500 text-white py-2 px-4 rounded-md mb-4">
-                Add Client
+              {t("addClient")}
               </button>
             </div>
             <ul>
@@ -164,12 +178,12 @@ const Dashboard = () => {
                     <FaGoogle />
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-sm">Name: <span>{cl.name}</span></span>
+                    <span className="text-sm">{t("name")}: <span>{cl.name}</span></span>
                     <span className="font-bold">$ {cl.amount}</span>
                   </div>
                   <div className="flex justify-between">
-                  <span className="text-sm">Client Status: <span className={ cl.status==="Active" ? "text-green-500" : "text-red-500"}>{cl.status}</span></span>
-                  <span className="text-sm">Outstanding Balance</span>
+                  <span className="text-sm">{t("clientStatus")}: <span className={ cl.status==="Active" ? "text-green-500" : "text-red-500"}>{cl.status}</span></span>
+                  <span className="text-sm">{t("outBal")}</span>
                   </div>
                 </li>
               ))}
@@ -178,7 +192,7 @@ const Dashboard = () => {
 
           {/* Clients Geography Section */}
           <div className="col-span-7 bg-white border p-4 rounded-md shadow">
-            <h3 className="text-lg font-medium mb-4">Clients Geography</h3>
+            <h3 className="text-lg font-medium mb-4">{t("geography")}</h3>
             <div className="map-container">
               <ComposableMap projectionConfig={{ scale: 150 }}>
                 <Geographies geography={geoUrl}>
