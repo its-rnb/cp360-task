@@ -5,6 +5,7 @@ import { Bar, Doughnut } from "react-chartjs-2";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import "tailwindcss/tailwind.css";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, ArcElement, Tooltip, Legend } from 'chart.js';
+import data from './data/clients.json'
 
 // Register components
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Tooltip, Legend);
@@ -18,7 +19,7 @@ const Dashboard = () => {
     datasets: [
       {
         label: "Revenue",
-        data: [3000, 2000, 2500, 4500, 5000, 4800, 4900, 6100, 5700, 5500, 6000, 6150],
+        data: [600, 550, 650, 450, 730, 780, 720, 630, 570, 550, 610, 660],
         backgroundColor: "rgba(159, 122, 234, 0.5)", // Transparent purple
         borderColor: "rgba(159, 122, 234, 1)", // Solid purple for border
         borderWidth: 2, // Add border to the bars
@@ -89,50 +90,18 @@ const Dashboard = () => {
             </button>
           </div>
           <ul>
-            <li className="mb-2">
-              <div className="flex justify-between">
-                <span className="font-semibold">Name: FedEx</span>
-                <span className="text-gray-500">$12,987,000</span>
-              </div>
-              <div className="flex justify-between">
-              <span className="text-gray-500">Client Status: Active</span>
-              <span className="text-sm text-gray-500">Outstanding Balance</span>
-              </div>
-            </li>
-            
-            <li className="mb-2">
-              <div className="flex justify-between">
-                <span className="font-semibold">Name: Google</span>
-                <span className="text-gray-500">$12,987,000</span>
-              </div>
-              <div className="flex justify-between">
-              <span className="text-gray-500">Client Status: Inactive</span>
-              <span className="text-sm text-gray-500">Outstanding Balance</span>
-              </div>
-            </li>
-            
-            <li className="mb-2">
-              <div className="flex justify-between">
-                <span className="font-semibold">Name: Zoho</span>
-                <span className="text-gray-500">$12,987,000</span>
-              </div>
-              <div className="flex justify-between">
-              <span className="text-gray-500">Client Status: Active</span>
-              <span className="text-sm text-gray-500">Outstanding Balance</span>
-              </div>
-            </li>
-            
-            <li className="mb-2">
-              <div className="flex justify-between">
-                <span className="font-semibold">Name: Keka</span>
-                <span className="text-gray-500">$12,987,000</span>
-              </div>
-              <div className="flex justify-between">
-              <span className="text-gray-500">Client Status: Active</span>
-              <span className="text-sm text-gray-500">Outstanding Balance</span>
-              </div>
-            </li>
-            {/* Add more clients as needed */}
+            { data.clients.map((cl)=> (
+              <li className="mb-2" key={cl.id}>
+                <div className="flex justify-between">
+                  <span className="text-sm">Name: <span>{cl.name}</span></span>
+                  <span className="font-bold">$ {cl.amount}</span>
+                </div>
+                <div className="flex justify-between">
+                <span className="text-sm">Client Status: <span>{cl.status}</span></span>
+                <span className="text-sm">Outstanding Balance</span>
+                </div>
+              </li>
+            ))}
           </ul>
         </div>
 

@@ -1,0 +1,28 @@
+{
+    "clients": [
+        {
+            "id": 1,
+            "name": "FedEx",
+            "status": "Active",
+            "amount": "12,987,000"
+        },
+        {
+            "id": 2,
+            "name": "Google",
+            "status": "Inactive",
+            "amount": "12,987,000"
+        },
+        {
+            "id": 3,
+            "name": "Zoho",
+            "status": "Active",
+            "amount": "12,987,000"
+        },
+        {
+            "id": 4,
+            "name": "Keka",
+            "status": "Active",
+            "amount": "12,987,000"
+        }
+    ]
+}
