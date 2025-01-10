@@ -63,11 +63,11 @@ const Dashboard = () => {
               <FaUsers size={24} />
               <span>Clients</span>
             </li>
-
           </ul>
         </nav>
       </div>
 
+      {/* Client Summary Section */}
       <div className="p-4 bg-gray-50 h-screen w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
           <div className="flex p-4 bg-white rounded shadow">
