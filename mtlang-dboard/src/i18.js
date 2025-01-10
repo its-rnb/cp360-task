@@ -53,7 +53,7 @@ const resources = {
     resources,
     fallbackLng: "en",
     supportedLngs: ["en", "fr"],
-    debug: true, // Enable debugging
+    debug: true,
     interpolation: {
       escapeValue: false,
     },
