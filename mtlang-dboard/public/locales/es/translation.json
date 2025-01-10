@@ -1,0 +1,8 @@
+{
+    "welcome": "Bienvenido a la aplicación multilingüe",
+    "form": {
+      "name": "Nombre",
+      "submit": "Enviar",
+      "error": "El nombre es obligatorio"
+    }
+}  

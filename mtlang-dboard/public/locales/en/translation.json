@@ -1,0 +1,8 @@
+{
+    "welcome": "Welcome to the Multilanguage App",
+    "form": {
+      "name": "Name",
+      "submit": "Submit",
+      "error": "Name is required"
+    }
+}  
