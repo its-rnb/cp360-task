@@ -34,7 +34,9 @@ const Dashboard = () => {
     datasets: [
       {
         data: [50, 30, 20],
-        backgroundColor: ["#68D391", "#63B3ED", "#FC8181"],
+        backgroundColor: ["#ae65ae", "#ec9f37", "#FC8181"],
+        borderWidth: 2, // Add border to the bars
+        borderRadius: 10, // Rounded corners for bars
       },
     ],
   };
@@ -53,29 +55,48 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <div className="p-4 bg-white rounded shadow">
           <h2 className="text-sm font-medium">Total Clients</h2>
-          <p className="text-lg font-bold">112</p>
+          <p className="text-lg font-bold text-purple-500">112</p>
         </div>
         <div className="p-4 bg-white rounded shadow">
           <h2 className="text-sm font-medium">Total Invoices</h2>
-          <p className="text-lg font-bold">65</p>
+          <p className="text-lg font-bold text-purple-500">65</p>
         </div>
         <div className="p-4 bg-white rounded shadow">
           <h2 className="text-sm font-medium">Total Revenue</h2>
-          <p className="text-lg font-bold">$7500</p>
+          <p className="text-lg font-bold text-purple-500">$7500</p>
         </div>
         <div className="p-4 bg-white rounded shadow">
           <h2 className="text-sm font-medium">Unpaid</h2>
-          <p className="text-lg font-bold">$1200</p>
+          <p className="text-lg font-bold text-purple-500">$1200</p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+
         <div className="p-4 bg-white rounded shadow">
-          <h2 className="text-sm font-medium mb-2">Total Revenue</h2>
+
+          <div className="flex justify-between">
+            <div className="">
+              <h3 className="text-lg font-medium">Total Revenue</h3>
+              <h2 className="text-lg font-bold mb-2">$17500</h2>
+            </div>
+
+            <div className="flex relative inline-block">
+              <button type="button" class="h-fit inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" id="menu-button" aria-expanded="true" aria-haspopup="true">
+                Options
+                <svg class="-mr-1 size-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                  <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                </svg>
+              </button>
+            </div>
+
+          </div>
           <Bar data={barData} key="bar-chart" />
+
         </div>
+
         <div className="p-4 bg-white rounded shadow">
-          <h2 className="text-sm font-medium mb-2">Invoice Status</h2>
+          <h3 className="text-lg font-medium mb-2">Invoice Status</h3>
           <Doughnut data={donutData} key="doughnut-chart" />
         </div>
       </div>
@@ -85,7 +106,7 @@ const Dashboard = () => {
         {/* Clients Section */}
         <div className="col-span-5 bg-white border p-4 rounded-md shadow">
           <div className="flex justify-between">
-            <h2 className="flex text-lg font-bold mb-4">Clients</h2>
+            <h3 className="flex text-lg font-medium mb-4">Clients</h3>
             <button className="flex bg-purple-500 text-white py-2 px-4 rounded-md mb-4">
               Add Client
             </button>
@@ -111,7 +132,7 @@ const Dashboard = () => {
 
         {/* Clients Geography Section */}
         <div className="col-span-7 bg-white border p-4 rounded-md shadow">
-          <h2 className="text-lg font-bold mb-4">Clients Geography</h2>
+          <h3 className="text-lg font-medium mb-4">Clients Geography</h3>
           <div className="map-container">
             <ComposableMap projectionConfig={{ scale: 150 }}>
               <Geographies geography={geoUrl}>
